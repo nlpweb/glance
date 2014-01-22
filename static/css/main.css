@@ -7,7 +7,7 @@ a { text-decoration: none;}
 
 #slogan, #slogan-describe { width: 100%;  text-align: center; height: 108px;}
 #slogan {font-weight: bold; margin-top: 108px; color: white; }
-#slogan-describe {font-size: 24px; letter-spacing: 1px; margin-top: 72px; color: #ddd;}
+#slogan-describe {font-size: 24px; letter-spacing: 1px; margin-top: 122px; color: #ddd;}
 
 #title {
 	font-size: 32px;
@@ -117,3 +117,26 @@ a { text-decoration: none;}
 #China-Junior	{background: white}
 
 /*#content-pos .percent div {line-height: 24px; height:24px; display: inline-block; margin-right: 20px;}*/
+
+/* word.html */
+
+#translationTable li{
+	color: #FFF;
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

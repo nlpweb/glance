@@ -23,10 +23,17 @@ bnc_test = json.load(open('static/data/bnc.word.test.json'))
 print 'done.'
 
 ### ---------------------------- UI ---------------------------- ###
-
+# ==== View ====
 @app.route('/')
 def hello():
     return render_template('index.html')
+
+@app.route('/word')
+def query_single_word():
+	return render_template('word.html')
+
+# ==== API =====
+
 
 @app.route("/demo/pos")
 @app.route("/demo/pos/")
@@ -48,10 +55,23 @@ def show_test():
 def show_wp():
 	return render_template('wp.html')
 
+
 @app.route('/demo/translation')
 @app.route('/demo/translation/')
 def show_translation_cht():
 	return render_template('translation.html')
+
+@app.route("/demo/char")
+def show_wp():
+	return render_template('char.html')
+
+@app.route("/demo/plot")
+def show_plot():
+	return render_template('plot.html')
+
+@app.route("/demo/cluster")
+def show_cluster():
+	return render_template('cluster.html')
 
 ### ---------------------------- API ---------------------------- ###
 ### pos API
@@ -112,5 +132,5 @@ def word_position(query):
 
 
 if __name__ == "__main__":
-	# app.debug = True
+	app.debug = True
 	app.run(host="0.0.0.0")
