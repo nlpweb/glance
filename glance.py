@@ -1,12 +1,13 @@
 # -*- coding: UTF-8 -*-
 
 from flask import Flask, render_template, request, redirect, Response
+from flask_yeoman import flask_yeoman
 import json, os, sys
 import language_kit as LK
 import mongo as DB  # fetch data from MongoDB running on moon
 
 app = Flask(__name__)
-
+app.register_blueprint(flask_yeoman)
 
 ### ---------------------------- Functions ---------------------------- ###
 
@@ -31,6 +32,12 @@ def hello():
 @app.route('/word')
 def query_single_word():
 	return render_template('word.html')
+
+
+@app.route('/structure')
+def query_structure():
+	return render_template('structure.html')
+
 
 # ==== API =====
 
@@ -104,12 +111,22 @@ def translate_first_cht(query):
 def sense_to_word( query ):
 	return LK.synset_to_words( query )
 
-# query hypernym and hyponym and definition of a word 
+# query word info
 # input: word 
 @app.route('/api/word/<query>')
 def query_word_info( query ):
 
 	return Response(json.dumps( LK.query_word( query ) ), mimetype='application/json')
+
+# query hypernym and hyponym and definition of a word 
+# input: sense
+
+@app.route('/api/sense/<query>/hyponym')
+def query_hyponym( query ):
+
+	return Response(json.dumps( LK.query_hyponym( query ) ), mimetype='application/json')
+
+
 
 ### test API
 # @app.route('/api/test/<query>')
@@ -133,4 +150,4 @@ def word_position(query):
 
 if __name__ == "__main__":
 	app.debug = True
-	app.run(host="0.0.0.0")
+	app.run(host="127.0.0.1")

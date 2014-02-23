@@ -53,12 +53,10 @@ def query_hyponym( sense ):
 		return {}
 
 	syn_dic = {}
-
-	syn_dic[ 'hyponyms' ] = [ { 'name': s.name } for s in syn.hyponyms() ]
+	# dig into the second tree
+	syn_dic[ 'hyponyms' ] = [ { 'name': synset_to_words(s.name) , 'sense':s.name , '_hyponyms': [ { 'name': x.name } for x in s.hyponyms() ] } for s in syn.hyponyms() ]
 
 	syn_dic[ 'name' ] = syn.name
-
-
 
 	return syn_dic
 
